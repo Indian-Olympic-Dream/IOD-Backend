@@ -1,5 +1,5 @@
 # Removing build folder
 dist/
-
+node_modules/
 # ENV file containing mongodb creds
 .env

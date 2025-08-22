@@ -21,17 +21,17 @@ app.use(express.urlencoded({extended: true}));
 app.use(compression());
 
 // Angular DIST output folder - update path to include project name
-app.use(express.static(path.join(__dirname, 'dist/indianolympicdream')));
+// app.use(express.static(path.join(__dirname, 'dist/indianolympicdream')));
 
 // API location
 app.use('/api', api);
 
 // Send all other requests to the Angular app - update path to include project name
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/indianolympicdream/index.html'));
-});
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'dist/indianolympicdream/index.html'));
+// });
 
-//Set Port
+// Set Port
 app.set('port', config.PORT);
 
 const server = http.createServer(app);
