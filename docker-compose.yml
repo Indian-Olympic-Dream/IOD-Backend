@@ -1,0 +1,40 @@
+services:
+  backend:
+    build: .
+    container_name: iod-backend
+    environment:
+      # For MongoDB connection
+      - MONGO_URI=mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongodb:27017/${MONGO_DB_NAME}?authSource=admin&directConnection=true
+      - MONGO_DB_NAME=${MONGO_DB_NAME}
+      # For the application port
+      - PORT=${APP_PORT}
+      - NODE_ENV=production
+    ports:
+      - "${APP_PORT}:${APP_PORT}" # Map host port to container port
+    depends_on:
+      - mongodb
+    networks:
+      - backend-network
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:4.4.18
+    container_name: iod-mongodb
+    environment:
+      # MongoDB root username and password here
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_DB_NAME} # Default database
+    volumes:
+      - mongodb-data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d:ro
+    networks:
+      - backend-network
+    restart: unless-stopped
+
+networks:
+  backend-network:
+    driver: bridge
+ 
+volumes:
+  mongodb-data:
