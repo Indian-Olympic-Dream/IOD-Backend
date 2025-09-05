@@ -225,6 +225,7 @@ router.post('/feedback', (req,res) =>{
             sendError(err, res);
         }
     });
+});
 
 router.get('/tokyo_2025_athletes', (req, res) => {
     let condition = {};
@@ -262,7 +263,6 @@ router.get('/tokyo_2025_schedule', (req, res) => {
             sendError(err, res);
         }
     });
-});
 });
 
 module.exports = router;
