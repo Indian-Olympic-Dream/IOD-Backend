@@ -3,3 +3,4 @@ dist/
 node_modules/
 # ENV file containing mongodb creds
 .env
+.DS_Store
