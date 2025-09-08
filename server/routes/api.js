@@ -265,4 +265,32 @@ router.get('/tokyo_2025_schedule', (req, res) => {
     });
 });
 
+router.get('/eventdetails/:eventId', (req, res) => {
+    let stage = req.query?.stage || "";
+    let unitName = req.query?.unitName || "";
+    const eventId = String(req.params.eventId);
+    let condition = {"id": eventId};
+    
+    connection(async (db) => {
+        try {
+            const collection = db.collection('tokyo_2025_eventdetails');
+            
+            // First find if event exists
+            const eventExists = await collection.findOne({"id": eventId, "phaseName":stage});
+              
+            if (!eventExists) {
+                return res.status(404).json({ message: "Event not found" });
+            }
+            const eventData = await collection
+                .find(condition)
+                .sort({_id: 1})
+                .toArray();
+            const response = { eventDetails: eventData };
+            res.status(200).json(response);
+        } catch (err) {
+            sendError(err, res);
+        }
+    });
+});
+
 module.exports = router;
