@@ -4,9 +4,7 @@ const config = {
   
   // MongoDB Configuration - simple dev/prod setup
   MONGODB: {
-    URI: process.env.NODE_ENV === 'production' 
-      ? process.env.MONGO_URI  // for production
-      : 'mongodb://localhost:27017', // Local dev
+    URI: process.env.MONGO_URI || 'mongodb://localhost:27017',  
     DB_NAME: process.env.MONGO_DB_NAME || 'IndianOlympicDream',
     AUTH_SOURCE: process.env.AUTH_SOURCE || 'admin'
   }
