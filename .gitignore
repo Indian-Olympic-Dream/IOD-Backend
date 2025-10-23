@@ -4,3 +4,5 @@ node_modules/
 # ENV file containing mongodb creds
 .env
 .DS_Store
+id_rsa_pub.pem
+id_rsa_priv.pem
