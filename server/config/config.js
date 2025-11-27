@@ -1,13 +1,13 @@
 const config = {
-  NODE_ENV: process.env.NODE_ENV || 'development',
-  PORT: parseInt(process.env.PORT) || 3000,
-  
+  NODE_ENV: process.env.NODE_ENV || "development",
+  PORT: parseInt(process.env.PORT) || 3001,
+
   // MongoDB Configuration - simple dev/prod setup
   MONGODB: {
-    URI: process.env.MONGO_URI || 'mongodb://localhost:27017',  
-    DB_NAME: process.env.MONGO_DB_NAME || 'IndianOlympicDream',
-    AUTH_SOURCE: process.env.AUTH_SOURCE || 'admin'
-  }
+    URI: process.env.MONGO_URI || "mongodb://localhost:27017",
+    DB_NAME: process.env.MONGO_DB_NAME || "IODSports",
+    AUTH_SOURCE: process.env.AUTH_SOURCE || "admin",
+  },
 };
 
 // Simple validation
